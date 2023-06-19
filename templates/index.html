@@ -1,9 +1,39 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Log In
+    Homepage
 {% endblock %}
 
 {% block main %}
-<img src="../static/avatar.png" alt="Login" width="300" height="300"> <br>
+<main class="container p-5">
+    <table class="table table-light">
+      <thead>
+        <tr>
+          <th scope="col"> Symbol </th>
+          <th scope="col"> Shares </th>
+          <th scope="col"> Current Price (USD) </th>
+          <th scope="col"> Total Value (USD) </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for stock in stocks %}
+        <tr>
+          <td>  {{ stock["symbol"] }}  </td>
+          <td>  {{ stock["SUM(shares)"] }}  </td>
+          <td>  {{ stock["price"] }}  </td>
+          <td>  {{ stock["SUM(shares)"]*stock["price"] }}  </td>
+        </tr>
+        {% endfor %}
+        <tr class='bg-success'>
+            <th scope='row' colspan='4'> Remaining Cash </th>
+            <td> {{ cash_remaining }} </td>
+        </tr>
+        <tr class='bg-primary'>
+            <th scope='row' colspan='4'> TOTAL BALANCE </th>
+            <td> {{total}} </td>
+        </tr>
+
+      </body>
+    </table>
+</main>
 {% endblock %}
